@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,12 +59,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aguacongas.Firebase.Authentication, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aguacongas.Firebase.Authentication.2.2.1\lib\netstandard2.0\Aguacongas.Firebase.Authentication.dll</HintPath>
-    </Reference>
-    <Reference Include="Costura, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>..\packages\Costura.Fody.4.0.0\lib\net40\Costura.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -217,6 +210,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeliveryApp.Designer.cs" />
+    <Compile Include="DeliveryApp1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeliveryApp.resx</DependentUpon>
+    </Compile>
     <Compile Include="Firebase\FirebaseContants.cs" />
     <Compile Include="Firebase\FulFillmentStuffForm.cs">
       <SubType>Form</SubType>
@@ -231,10 +229,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Order.cs" />
-    <Compile Include="OrdersOfTruck.cs">
+    <Compile Include="OrdersOrganizer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrdersOfTruck.Designer.cs" />
+    <Compile Include="OrdersOrganizer.Designer.cs">
+      <DependentUpon>OrdersOrganizer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortestPath.cs" />
@@ -246,15 +246,18 @@
     </Compile>
     <Compile Include="Truck.cs" />
     <Compile Include="UserData.cs" />
-    <EmbeddedResource Include="DeliveryApp.resx" />
+    <EmbeddedResource Include="DeliveryApp.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeliveryApp1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Firebase\FulFillmentStuffForm.resx">
       <DependentUpon>FulFillmentStuffForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrdersOfTruck.resx">
-      <DependentUpon>OrdersOfTruck.cs</DependentUpon>
+    <EmbeddedResource Include="OrdersOrganizer.resx">
+      <DependentUpon>OrdersOrganizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -312,6 +315,8 @@
     <Content Include="appicon.ico" />
     <Content Include="Icon1.ico" />
     <Content Include="newnumbers.jpg" />
+    <None Include="Resources\load_order_icon.png" />
+    <None Include="Resources\load_locations.png" />
     <None Include="Resources\newnumbers.jpg" />
     <None Include="Resources\orders_icon.png" />
     <None Include="Resources\img_3954511.png" />
@@ -325,11 +330,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props'))" />
-    <Error Condition="!Exists('..\packages\Fody.5.0.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.5.0.6\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\packages\Fody.5.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.5.0.6\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

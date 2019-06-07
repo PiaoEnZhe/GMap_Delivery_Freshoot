@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DelveryManager_CSharp
+namespace Freshoot
 {
-    public partial class OrdersOfTruck : Form
+    public partial class OrdersOrganizer : Form
     {
-        public OrdersOfTruck()
+        public OrdersOrganizer()
         {
             InitializeComponent();
         }

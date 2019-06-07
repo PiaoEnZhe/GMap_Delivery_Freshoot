@@ -26,6 +26,10 @@ namespace DelveryManager_CSharp
     public partial class DeliveryApp : Form
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
+        private Panel panel1;
+        private Panel panel4;
+        private Panel panel2;
+        private Panel panel3;
         public const int HT_CAPTION = 0x2;
 
         [DllImportAttribute("user32.dll")]
@@ -608,6 +612,65 @@ namespace DelveryManager_CSharp
         private void Button3_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(1);
+        }
+
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 681);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(200, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1064, 100);
+            this.panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(200, 581);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1064, 100);
+            this.panel3.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 100);
+            this.panel4.TabIndex = 3;
+            // 
+            // DeliveryApp
+            // 
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "DeliveryApp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Orders Organizer";
+            this.panel1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
     }
 }
