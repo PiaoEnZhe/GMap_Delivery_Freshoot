@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GMap.NET;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,14 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
-namespace DelveryManager_CSharp
+namespace Freshoot
 {
     class DeliverManager
     {
-        public int truckcnt = 0;
-        public int ordercnt = 0;
         public int orderspertruck = 30;
         public static List<Order> orderlist = new List<Order>();
-        public List<Truck> trucklist = new List<Truck>();
-        public List<bool> isorderdeployed = new List<bool>();
+        public static List<Truck> trucklist = new List<Truck>();
+        public static List<bool> isorderdeployed = new List<bool>();
         public static string apikey = "AIzaSyBYRn4-66u_0wwM6SJwuZhVE_BjeKZ0AmY";
 
         public static int maxorderspertruck = 40;
@@ -63,8 +62,6 @@ namespace DelveryManager_CSharp
         {
             isorderdeployed.Clear();
             orderlist.Clear();
-            truckcnt = 0;
-            ordercnt = 0;
             orderspertruck = 30;
             orderlist.Clear();
             trucklist.Clear();
@@ -98,7 +95,6 @@ namespace DelveryManager_CSharp
                     orderlist.Add(order);
                     isorderdeployed.Add(false);
                 }
-                ordercnt = cnt;
             }
             catch(Exception e1)
             {
@@ -115,69 +111,81 @@ namespace DelveryManager_CSharp
 
         public void AutoDeploy()
         {
-            truckcnt = (ordercnt - 1) / orderspertruck + 1;
-            double r = 500;
-            double theta = 360 / truckcnt;
-            int orderstodeploy = ordercnt;
-            if(truckcnt > 16)
+            int ranks = DeliverManager.orderlist.Count;
+            double[,] tempdistanceMatrix = new double[DeliverManager.maxordercnt, DeliverManager.maxordercnt];
+            string lat_ori, lng_ori, lat_des, lng_des, sql;
+            for (int i = 0; i < ranks; i++)
             {
-                MessageBox.Show("The Maximum Truck Count is 16.");
-                return; 
-            }
-
-            for(int i = 0; i < truckcnt; i++)
-            {
-                Truck truck = new Truck();
-                truck.truckid = i;
-                truck.trucknumber = "truck" + Convert.ToString(i + 1);
-
-                double x0 = r * Math.Cos(theta * i);
-                double y0 = r * Math.Sin(theta * i);
-
-                List<distance> distancelist = new List<distance>();
-                for(int j = 0; j < ordercnt; j++)
+                for (int j = 0; j < ranks; j++)
                 {
-                    if(!isorderdeployed[j])
+                    int fromorderidx = i; // trucklist[indexChecked].orderidlist[i];
+                    int toorderidx = j; // trucklist[indexChecked].orderidlist[j];
+                    if (distanceMatrix[fromorderidx, toorderidx] == 0)
                     {
-                        distance dis = new distance();
-                        dis.orderid = j;
-                        dis.dist = (orderlist[j].lat - x0) * (orderlist[j].lat - x0) + (orderlist[j].lng - y0) * (orderlist[j].lng - y0);
-                        distancelist.Add(dis);
-                    }
-                }
+                        lat_ori = Convert.ToString(DeliverManager.orderlist[fromorderidx].lat);
+                        lng_ori = Convert.ToString(DeliverManager.orderlist[fromorderidx].lng);
 
-                // sort the distance list according to the dist
+                        lat_des = Convert.ToString(DeliverManager.orderlist[toorderidx].lat);
+                        lng_des = Convert.ToString(DeliverManager.orderlist[toorderidx].lng);
 
-                for(int j = 0; j < orderstodeploy; j++)
-                {
-                    for(int k = j + 1; k < orderstodeploy; k++)
-                    {
-                        if(distancelist[j].dist > distancelist[k].dist)
+                        sql = "select * from dist where lat_ori = " + lat_ori + " and lng_ori = " + lng_ori + " and lat_des = " + lat_des + " and lng_des = " + lng_des;
+                        SQLiteCommand command = new SQLiteCommand(sql, OrdersOrganizer.dbConnection);
+                        SQLiteDataReader sqlreader = command.ExecuteReader();
+                        if (sqlreader.Read())
                         {
-                            distance dis = new distance();
-                            dis = distancelist[j]; distancelist[j] = distancelist[k]; distancelist[k] = dis;
+                            distanceMatrix[fromorderidx, toorderidx] = Convert.ToDouble(sqlreader["distance"]);
+                        }
+                        else
+                        {
+                            string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
+                            url += Convert.ToString(DeliverManager.orderlist[i].lat) + " , " + Convert.ToString(DeliverManager.orderlist[fromorderidx].lng) + "&destinations=";
+                            url += Convert.ToString(DeliverManager.orderlist[j].lat) + " , " + Convert.ToString(DeliverManager.orderlist[toorderidx].lng) + "&key=" + apikey;
+                            string json = "";
+                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                            request.AutomaticDecompression = DecompressionMethods.GZip;
+                            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                            using (Stream stream = response.GetResponseStream())
+                            using (StreamReader reader = new StreamReader(stream))
+                            {
+                                json = reader.ReadToEnd();
+                            }
+                            var matrix = new JavaScriptSerializer().Deserialize<DeliverManager.distmatrix>(json);
+                            distanceMatrix[fromorderidx, toorderidx] = matrix.rows[0].elements[0].distance.value;
+
+                            sql = "insert into dist (lat_ori, lng_ori ,lat_des,lng_des, distance) values(" + lat_ori + " , " + lng_ori + " , " + lat_des + " , " + lng_des + " , " + Convert.ToString(distanceMatrix[fromorderidx, toorderidx]) + ")";
+                            command = new SQLiteCommand(sql, OrdersOrganizer.dbConnection);
+                            command.ExecuteNonQuery();
                         }
                     }
+                    tempdistanceMatrix[i, j] = distanceMatrix[fromorderidx, toorderidx];
                 }
+            }
 
-                // take ordespertruck orders from the sorted result.
-
-                int cnt = Math.Min(orderstodeploy, orderspertruck);
-                for(int j = 0; j < cnt; j++)
+          
+            TSP.setdistMat(tempdistanceMatrix, ranks);
+            int[] sortresult = TSP.Solve();
+            //re-arrange the points of truck accoring to the sort result
+            int nTruckId = 0;
+            int nOrdersInTruck = 0;
+            Truck truck = new Truck(0);
+            trucklist.Add(truck);
+            for (int i = 0; i < ranks; i++, nOrdersInTruck++)
+            {
+                if(nOrdersInTruck == orderspertruck)
                 {
-                    truck.AddOrder(distancelist[j].orderid, orderlist[distancelist[j].orderid].lat, orderlist[distancelist[j].orderid].lng);
-                    orderlist[distancelist[j].orderid].truckid = i;
-                    isorderdeployed[distancelist[j].orderid] = true;
-                    orderstodeploy--;
-                }
+                    nOrdersInTruck = 0;
+                    nTruckId++;
 
-                trucklist.Add(truck);
+                    Truck newtruck = new Truck(nTruckId);
+                    trucklist.Add(newtruck);
+                }
+                trucklist[nTruckId].AddOrder(sortresult[i]);
             }
         }
 
         public bool AddOrderToTruck(int truckid, int orderid)
         {
-            trucklist[truckid].AddOrder(orderid, orderlist[orderid].lat, orderlist[orderid].lng);
+            trucklist[truckid].AddOrder(orderid);
             return true;
         }
 
@@ -189,8 +197,9 @@ namespace DelveryManager_CSharp
 
         public void LoadDistance()
         {
-            for(int i = 0; i < ordercnt; i++)
-                for(int j = 0; j < ordercnt; j++)
+            for(int i = 0; i < DeliverManager.orderlist.Count; i++)
+            {
+                for (int j = 0; j < DeliverManager.orderlist.Count; j++)
                 {
                     string lat_ori = Convert.ToString(orderlist[i].lat);
                     string lng_ori = Convert.ToString(orderlist[i].lng);
@@ -199,9 +208,9 @@ namespace DelveryManager_CSharp
                     string lng_des = Convert.ToString(orderlist[j].lng);
 
                     string sql = "select * from dist where lat_ori = " + lat_ori + " and lng_ori = " + lng_ori + " and lat_des = " + lat_des + " and lng_des = " + lng_des;
-                    SQLiteCommand command = new SQLiteCommand(sql, DeliveryApp.dbConnection);
+                    SQLiteCommand command = new SQLiteCommand(sql, OrdersOrganizer.dbConnection);
                     SQLiteDataReader sqlreader = command.ExecuteReader();
-                    if(sqlreader.Read())
+                    if (sqlreader.Read())
                     {
                         distanceMatrix[i, j] = Convert.ToDouble(sqlreader["distance"]);
                     }
@@ -223,133 +232,11 @@ namespace DelveryManager_CSharp
                         distanceMatrix[i, j] = matrix.rows[0].elements[0].distance.value;
 
                         sql = "insert into dist (lat_ori, lng_ori ,lat_des,lng_des, distance) values(" + lat_ori + " , " + lng_ori + " , " + lat_des + " , " + lng_des + " , " + Convert.ToString(distanceMatrix[i, j]) + ")";
-                        command = new SQLiteCommand(sql, DeliveryApp.dbConnection);
+                        command = new SQLiteCommand(sql, OrdersOrganizer.dbConnection);
                         command.ExecuteNonQuery();
                     }
                 }
-
-            //    int blocks = ordercnt / 10; // google api can accept 10 address at one time
-            //    int remain = ordercnt % 10;
-
-            //    for (int i = 0; i < blocks; i++)
-            //    {
-            //        for(int j = 0; j < blocks; j++)
-            //        {
-            //            string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
-            //            int k = 0, l = 0;
-            //            for (k = i * 10; k < (i + 1) * 10 - 1; k++)
-            //                url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + '|';
-            //            url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + "&destinations=";
-            //            for (l = j * 10; l < (j + 1) * 10 - 1; l++)
-            //                url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + '|';
-            //            url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + "&key=" + apikey;
-            //            string json = "";
-            //            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            //            request.AutomaticDecompression = DecompressionMethods.GZip;
-            //            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //            using (Stream stream = response.GetResponseStream())
-            //            using (StreamReader reader = new StreamReader(stream))
-            //            {
-            //                json = reader.ReadToEnd();
-            //            }
-            //            var matrix = new JavaScriptSerializer().Deserialize<distmatrix>(json);
-            //            for(int s = 0; s < matrix.rows.Count; s++)
-            //            {
-            //                for(int t = 0; t < matrix.rows[s].elements.Count; t++)
-            //                {
-            //                    distanceMatrix[i*10+s, j*10+t] = matrix.rows[s].elements[t].distance.value;
-            //                }
-            //            }
-            //        }
-
-            //       {
-            //            string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
-            //            int k = 0, l = 0;
-            //            for (k = i * 10; k < (i + 1) * 10 - 1; k++)
-            //                url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + '|';
-            //            url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + "&destinations=";
-            //            for (l = 10 * blocks; l < ordercnt - 1; l++)
-            //                url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + '|';
-            //            url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + "&key=" + apikey;
-            //            string json = "";
-            //            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            //            request.AutomaticDecompression = DecompressionMethods.GZip;
-            //            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //            using (Stream stream = response.GetResponseStream())
-            //            using (StreamReader reader = new StreamReader(stream))
-            //            {
-            //                json = reader.ReadToEnd();
-            //            }
-            //            var matrix = new JavaScriptSerializer().Deserialize<distmatrix>(json);
-            //            for (int s = 0; s < matrix.rows.Count; s++)
-            //            {
-            //                for (int t = 0; t < matrix.rows[s].elements.Count; t++)
-            //                {
-            //                    distanceMatrix[i * 10 + s, blocks * 10 + t] = matrix.rows[s].elements[t].distance.value;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    for (int j = 0; j < blocks; j++)
-            //    {
-            //        string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
-            //        int k = 0, l = 0;
-            //        for (k = 10 * blocks; k < ordercnt - 1; k++)
-            //            url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + '|';
-            //        url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + "&destinations=";
-            //        for (l = j * 10; l < (j + 1) * 10 - 1; l++)
-            //            url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + '|';
-            //        url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + "&key=" + apikey;
-            //        string json = "";
-            //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            //        request.AutomaticDecompression = DecompressionMethods.GZip;
-            //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //        using (Stream stream = response.GetResponseStream())
-            //        using (StreamReader reader = new StreamReader(stream))
-            //        {
-            //            json = reader.ReadToEnd();
-            //        }
-            //        var matrix = new JavaScriptSerializer().Deserialize<distmatrix>(json);
-            //        for (int s = 0; s < matrix.rows.Count; s++)
-            //        {
-            //            for (int t = 0; t < matrix.rows[s].elements.Count; t++)
-            //            {
-            //                distanceMatrix[blocks * 10 + s, j * 10 + t] = matrix.rows[s].elements[t].distance.value;
-            //            }
-            //        }
-            //    }
-            //    {
-            //        string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
-            //        int k = 0, l = 0;
-            //        for (k = blocks * 10; k < ordercnt - 1; k++)
-            //            url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + '|';
-            //        url += Convert.ToString(orderlist[k].lat) + " , " + Convert.ToString(orderlist[k].lng) + "&destinations=";
-            //       // url += orderlist[k].city + "+" + orderlist[k].addressnumber + "+" + orderlist[k].streetname + "&destinations=";
-
-            //        for (l = blocks * 10; l < ordercnt - 1; l++)
-            //            url += orderlist[l].city + "+" + orderlist[l].addressnumber + "+" + orderlist[l].streetname + "|";
-
-            //        url += Convert.ToString(orderlist[l].lat) + " , " + Convert.ToString(orderlist[l].lng) + "&key=" + apikey;
-
-            //        string json = "";
-            //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            //        request.AutomaticDecompression = DecompressionMethods.GZip;
-            //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //        using (Stream stream = response.GetResponseStream())
-            //        using (StreamReader reader = new StreamReader(stream))
-            //        {
-            //            json = reader.ReadToEnd();
-            //        }
-            //        var matrix = new JavaScriptSerializer().Deserialize<distmatrix>(json);
-            //        for (int s = 0; s < matrix.rows.Count; s++)
-            //        {
-            //            for (int t = 0; t < matrix.rows[s].elements.Count; t++)
-            //            {
-            //                distanceMatrix[blocks * 10 + s, blocks * 10 + t] = matrix.rows[s].elements[t].distance.value;
-            //            }
-            //        }
-            //    }
-
+             }
         }
     }
 }

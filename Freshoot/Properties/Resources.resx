@@ -121,6 +121,9 @@
   <data name="img_395451" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img_395451.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="load_order_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\load_order_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="orders_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\orders_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -144,5 +147,137 @@
   </data>
   <data name="load_order_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\load_order_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_b.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_c.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_e.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_f" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_f.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_i" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_i.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_j" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_j.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_k" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_k.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_n.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_q" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_q.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_r.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_t.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_a_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_a_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_b_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_b_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_c_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_c_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_d_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_d_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_e_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_e_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_f_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_f_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_g_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_g_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_h_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_h_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_i_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_i_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_j_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_j_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_k_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_k_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_l_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_l_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_m_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_m_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_n_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_n_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_o_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_o_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_p_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_p_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_q_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_q_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_r_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_r_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_s_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_s_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_t_sec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_t_sec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+    <data name="checker_failure" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checker_failure.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="checker_sucess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checker_sucess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

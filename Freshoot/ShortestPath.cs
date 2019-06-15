@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Google.OrTools.ConstraintSolver;
 
-namespace DelveryManager_CSharp
+namespace Freshoot
 {
     public class TSP
     {
@@ -79,7 +79,7 @@ namespace DelveryManager_CSharp
     }
 }
 
-//namespace DelveryManager_CSharp
+//namespace Freshoot
 //{
 //    public class tspParams : NodeEvaluator2
 //    {

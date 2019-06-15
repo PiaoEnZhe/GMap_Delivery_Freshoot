@@ -18,7 +18,7 @@ using Firebase.Auth.Payloads;
 using Freshoot.Firebase;
 using Freshoot.Properties;
 
-using DelveryManager_CSharp;
+using Freshoot;
 
 namespace Freshoot
 {
@@ -50,6 +50,9 @@ namespace Freshoot
                 MessageBox.Show("Firebase Connection Failed, Check Your Network Status.");
                 Close();
             }
+
+            FulFillmentStuffForm form1 = new FulFillmentStuffForm();
+            form1.Show();
         }
 
         private void logo_Click(object sender, EventArgs e)
@@ -98,8 +101,8 @@ namespace Freshoot
 
                     if (data.role == UserData.ROLE_ORGANIZER || data.role == UserData.ROLE_ADMIN)
                     {
-                        DeliveryApp deliveryApp = new DeliveryApp();
-                        deliveryApp.ShowDialog();
+                        OrdersOrganizer oo = new OrdersOrganizer();
+                        oo.ShowDialog();
                     }
                     else if (data.role == UserData.ROLE_FULFILLMENT)
                     {
