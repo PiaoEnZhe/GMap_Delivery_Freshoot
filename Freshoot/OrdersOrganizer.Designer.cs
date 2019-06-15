@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersOrganizer));
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -39,15 +40,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.listOrder = new System.Windows.Forms.ListBox();
-            this.pictureTruckNumber = new System.Windows.Forms.PictureBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.truck_bins_count = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.ordercntcontrol = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.truck_order_count_label = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,31 +57,30 @@
             this.driver_name_label = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboTruck = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listTruck = new System.Windows.Forms.CheckedListBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.OrderUp = new System.Windows.Forms.PictureBox();
-            this.OrderDown = new System.Windows.Forms.PictureBox();
-            this.OrderRefresh = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureTruckNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ordercntcontrol)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderRefresh)).BeginInit();
             this.SuspendLayout();
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(16, 142);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(240, 394);
+            this.listBox2.TabIndex = 4;
             // 
             // pictureBox6
             // 
@@ -91,7 +91,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 9;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.OnExit);
             // 
             // pictureBox5
             // 
@@ -102,7 +101,6 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 8;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.OnLoadGeoInformation);
             // 
             // pictureBox3
             // 
@@ -113,7 +111,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.OnLoadOrder);
             // 
             // total_order_count_label
             // 
@@ -178,27 +175,26 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "Truck Orders";
             // 
-            // listOrder
+            // listBox1
             // 
-            this.listOrder.FormattingEnabled = true;
-            this.listOrder.Location = new System.Drawing.Point(433, 39);
-            this.listOrder.Name = "listOrder";
-            this.listOrder.Size = new System.Drawing.Size(544, 95);
-            this.listOrder.TabIndex = 16;
-            this.listOrder.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListOrder_MouseClick);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(433, 39);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(544, 95);
+            this.listBox1.TabIndex = 16;
             // 
-            // pictureTruckNumber
+            // pictureBox2
             // 
-            this.pictureTruckNumber.Location = new System.Drawing.Point(326, 82);
-            this.pictureTruckNumber.Name = "pictureTruckNumber";
-            this.pictureTruckNumber.Size = new System.Drawing.Size(50, 50);
-            this.pictureTruckNumber.TabIndex = 15;
-            this.pictureTruckNumber.TabStop = false;
+            this.pictureBox2.Location = new System.Drawing.Point(323, 102);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(220, 105);
+            this.label10.Location = new System.Drawing.Point(218, 112);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 13);
             this.label10.TabIndex = 14;
@@ -207,7 +203,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(338, 52);
+            this.label9.Location = new System.Drawing.Point(321, 52);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
             this.label9.TabIndex = 13;
@@ -225,7 +221,7 @@
             // truck_bins_count
             // 
             this.truck_bins_count.AutoSize = true;
-            this.truck_bins_count.Location = new System.Drawing.Point(337, 26);
+            this.truck_bins_count.Location = new System.Drawing.Point(321, 26);
             this.truck_bins_count.Name = "truck_bins_count";
             this.truck_bins_count.Size = new System.Drawing.Size(25, 13);
             this.truck_bins_count.TabIndex = 11;
@@ -234,18 +230,15 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel3.Controls.Add(this.OrderRefresh);
-            this.panel3.Controls.Add(this.OrderDown);
-            this.panel3.Controls.Add(this.OrderUp);
-            this.panel3.Controls.Add(this.ordercntcontrol);
             this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.listOrder);
-            this.panel3.Controls.Add(this.pictureTruckNumber);
+            this.panel3.Controls.Add(this.listBox1);
+            this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.truck_bins_count);
             this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.truck_order_count_label);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label6);
@@ -254,39 +247,30 @@
             this.panel3.Controls.Add(this.driver_name_label);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.comboTruck);
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(275, 531);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(989, 150);
             this.panel3.TabIndex = 5;
             // 
-            // ordercntcontrol
-            // 
-            this.ordercntcontrol.Location = new System.Drawing.Point(259, 23);
-            this.ordercntcontrol.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.ordercntcontrol.Name = "ordercntcontrol";
-            this.ordercntcontrol.Size = new System.Drawing.Size(41, 20);
-            this.ordercntcontrol.TabIndex = 18;
-            this.ordercntcontrol.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.ordercntcontrol.ValueChanged += new System.EventHandler(this.OnChangeOrderCnt);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(306, 26);
+            this.label7.Location = new System.Drawing.Point(289, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "bins";
+            // 
+            // truck_order_count_label
+            // 
+            this.truck_order_count_label.AutoSize = true;
+            this.truck_order_count_label.Location = new System.Drawing.Point(263, 26);
+            this.truck_order_count_label.Name = "truck_order_count_label";
+            this.truck_order_count_label.Size = new System.Drawing.Size(19, 13);
+            this.truck_order_count_label.TabIndex = 9;
+            this.truck_order_count_label.Text = "25";
             // 
             // label5
             // 
@@ -360,14 +344,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Truck";
             // 
-            // comboTruck
+            // comboBox1
             // 
-            this.comboTruck.FormattingEnabled = true;
-            this.comboTruck.Location = new System.Drawing.Point(80, 18);
-            this.comboTruck.Name = "comboTruck";
-            this.comboTruck.Size = new System.Drawing.Size(121, 21);
-            this.comboTruck.TabIndex = 0;
-            this.comboTruck.SelectedIndexChanged += new System.EventHandler(this.ComboTruck_SelectedIndexChanged);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(80, 18);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -390,7 +373,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.listTruck);
+            this.panel1.Controls.Add(this.listBox2);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -398,17 +381,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 681);
             this.panel1.TabIndex = 3;
-            // 
-            // listTruck
-            // 
-            this.listTruck.CheckOnClick = true;
-            this.listTruck.FormattingEnabled = true;
-            this.listTruck.Location = new System.Drawing.Point(15, 147);
-            this.listTruck.Name = "listTruck";
-            this.listTruck.Size = new System.Drawing.Size(237, 379);
-            this.listTruck.TabIndex = 4;
-            this.listTruck.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListTruck_ItemCheck);
-            this.listTruck.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListTruck_MouseClick);
             // 
             // label14
             // 
@@ -442,69 +414,11 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // gmap
-            // 
-            this.gmap.Bearing = 0F;
-            this.gmap.CanDragMap = true;
-            this.gmap.EmptyTileColor = System.Drawing.Color.Navy;
-            this.gmap.GrayScaleMode = false;
-            this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.gmap.LevelsKeepInMemmory = 5;
-            this.gmap.Location = new System.Drawing.Point(281, 80);
-            this.gmap.MarkersEnabled = true;
-            this.gmap.MaxZoom = 25;
-            this.gmap.MinZoom = 2;
-            this.gmap.MouseWheelZoomEnabled = true;
-            this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.gmap.Name = "gmap";
-            this.gmap.NegativeMode = false;
-            this.gmap.PolygonsEnabled = true;
-            this.gmap.RetryLoadTile = 0;
-            this.gmap.RoutesEnabled = true;
-            this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.gmap.ShowTileGridLines = false;
-            this.gmap.Size = new System.Drawing.Size(971, 445);
-            this.gmap.TabIndex = 6;
-            this.gmap.Zoom = 11D;
-            this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.Gmap_OnMarkerClick);
-            // 
-            // OrderUp
-            // 
-            this.OrderUp.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.OrderUp.Location = new System.Drawing.Point(522, 14);
-            this.OrderUp.Name = "OrderUp";
-            this.OrderUp.Size = new System.Drawing.Size(46, 18);
-            this.OrderUp.TabIndex = 19;
-            this.OrderUp.TabStop = false;
-            this.OrderUp.Click += new System.EventHandler(this.OrderUp_Click);
-            // 
-            // OrderDown
-            // 
-            this.OrderDown.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.OrderDown.Location = new System.Drawing.Point(592, 14);
-            this.OrderDown.Name = "OrderDown";
-            this.OrderDown.Size = new System.Drawing.Size(46, 18);
-            this.OrderDown.TabIndex = 20;
-            this.OrderDown.TabStop = false;
-            this.OrderDown.Click += new System.EventHandler(this.OrderDown_Click);
-            // 
-            // OrderRefresh
-            // 
-            this.OrderRefresh.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.OrderRefresh.Location = new System.Drawing.Point(662, 15);
-            this.OrderRefresh.Name = "OrderRefresh";
-            this.OrderRefresh.Size = new System.Drawing.Size(46, 18);
-            this.OrderRefresh.TabIndex = 21;
-            this.OrderRefresh.TabStop = false;
-            this.OrderRefresh.Click += new System.EventHandler(this.OrderRefresh_Click);
-            // 
             // OrdersOrganizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.gmap);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -515,24 +429,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureTruckNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ordercntcontrol)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderRefresh)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -543,14 +455,15 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ListBox listOrder;
-        private System.Windows.Forms.PictureBox pictureTruckNumber;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label truck_bins_count;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label truck_order_count_label;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
@@ -559,17 +472,11 @@
         private System.Windows.Forms.Label driver_name_label;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboTruck;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private GMap.NET.WindowsForms.GMapControl gmap;
-        private System.Windows.Forms.CheckedListBox listTruck;
-        private System.Windows.Forms.NumericUpDown ordercntcontrol;
-        private System.Windows.Forms.PictureBox OrderRefresh;
-        private System.Windows.Forms.PictureBox OrderDown;
-        private System.Windows.Forms.PictureBox OrderUp;
     }
 }
